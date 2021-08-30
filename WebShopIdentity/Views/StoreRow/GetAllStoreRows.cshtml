@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebShopIdentity.ViewModels.VW_StoreRows>
+
+@{
+    ViewData["Title"] = "GetAllSroreRows";
+}
+
+<div class="row justify-content-evenly ">
+    <div class="col-sm-4">
+        <div class="container-sm">
+            <h4>DoumentType: @ViewBag.Store.DocumentName</h4>
+            <h5>No         : @ViewBag.Store.Id</h5>
+            <h5>ReceipDate : @ViewBag.Store.ReceipDate</h5>
+        </div>
+    </div>
+    <p>
+        <a asp-action="AddStoreRow" asp-route-Id="@ViewBag.Store.Id">Create New</a>
+    </p>  
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Debit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credit)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Debit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.StoreRowId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StoreRowId">Details</a> |*@
+                <a asp-action="RemoveStoreRows" asp-route-id="@item.Id">RemoveStoreRow</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="GetAllStores" asp-controller="Store">Back</a>
+</div>

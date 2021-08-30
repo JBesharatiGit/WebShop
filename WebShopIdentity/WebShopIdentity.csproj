@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-WebShopIdentity-D9B11064-3066-4DF7-9E29-7033DD4B4292</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20210807085302_EditUnernetOseed.cs" />
+    <Compile Remove="Data\Migrations\20210807085302_EditUnernetOseed.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210808124411_EditCity.cs" />
+    <Compile Remove="Data\Migrations\20210808124411_EditCity.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210809102249_EditCityUser.cs" />
+    <Compile Remove="Data\Migrations\20210809102249_EditCityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210809102809_EditCityUser.cs" />
+    <Compile Remove="Data\Migrations\20210809102809_EditCityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210809103850_EditCityUser.cs" />
+    <Compile Remove="Data\Migrations\20210809103850_EditCityUser.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210810081448_CreateView.cs" />
+    <Compile Remove="Data\Migrations\20210810081448_CreateView.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210812130518_Store.cs" />
+    <Compile Remove="Data\Migrations\20210812130518_Store.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210812195012_EditUserStoreView.cs" />
+    <Compile Remove="Data\Migrations\20210812195012_EditUserStoreView.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210814045440_BaseTable.cs" />
+    <Compile Remove="Data\Migrations\20210814045440_BaseTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.16" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

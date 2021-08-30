@@ -1,0 +1,81 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@*@model IEnumerable<UserCityViewModel>*@
+@model IEnumerable<VW_UserCity>
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h5>List Users</h5>
+
+@if (Model.Any())
+{
+
+    @*<p>
+        <a asp-action="CreateCountry">Create New</a>
+    </p>*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CityName)
+
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CityName)
+                    </td>
+                    <td>
+                        <a asp-action="EditUser" asp-route-id="@item.Id">Update user information</a>
+                        @*<a asp-action="CreateCity" asp-route-id="@item.Id">CreateCity</a> |
+                            <a asp-action="DeleteCountry" asp-route-id="@item.Id">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @*foreach (var user in Model)
+            {
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Role Id:@user.Id
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@user.Email</h5>
+                    </div>
+
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-header">
+                    No Role Created yeat
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Use the button below to create Role
+                    </h5>
+                    <a class="btn bg-primary" style="width:auto"
+                       asp-controller="Administration" asp-action="CreateRole">Create Role</a>
+                </div>
+            </div>*@
+}
+
+

@@ -1,0 +1,204 @@
+﻿@model IEnumerable<WebShopIdentity.ViewModels.OrderRowListViewModel>
+@*@model IEnumerable<WebShopIdentity.ViewModels.VW_ShopHistory>*@
+@{ViewData["Title"] = "GetAllOrderRows";}
+
+
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+
+<div class="container">
+    <div class="row justify-content-evenly ">
+
+        <div class="col-sm-4">
+            <div class="container-sm">
+                <h2>Payment Receipt </h2>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    @*<div class="jumbotron">*@
+    <div class="row justify-content-evenly ">
+        <div class="col-sm-4">
+            <div class="container-sm">
+                <h4>Customer address:</h4>
+
+                <h6>@ViewBag.Order.CpersonName </h6>
+                <h6>@ViewBag.Order.BillingAddress </h6>
+                <h6>@ViewBag.Order.BillingZip @ViewBag.Order.BillibgCity </h6>
+                <br />
+                <h4>Sweden</h4>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container-sm">
+                <h4>Delivery address:</h4>
+
+                <h6>@ViewBag.Order.CpersonName </h6>
+                <h6>@ViewBag.Order.DeliveryAddress </h6>
+                <h6>@ViewBag.Order.DeliveryZip @ViewBag.Order.DeliveryCity </h6>
+                <br />
+                <h4>Sweden</h4>
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+</div>
+
+<br />
+<br />
+
+
+<div class="row justify-content-evenly ">
+
+    <div class="col-sm-4">
+        <div class="container-sm">
+            <h5>Customer.  : @ViewBag.Order.CpersonName</h5>
+            <h5>Email      : @ViewBag.Order.Email</h5>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="container-sm">
+            <h5>Order Number: @ViewBag.Order.order.OrderId</h5>
+            <h5>Order Date  : @ViewBag.Order.order.OrderDate</h5>
+        </div>
+    </div>
+</div>
+<br />
+<p>
+
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.orderRow.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderRow.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderRow.Price)
+            </th>
+            <th>
+                VAT 25%
+            </th>
+            <th>
+                Incl VAT
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{double Total = 0; }
+
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.Price)
+                    </td>
+
+
+                    <td>
+                        @{double Vat = item.orderRow.Price;
+                            Vat *= 0.25;
+                        }
+                        @Vat
+
+                        @*@Html.DisplayFor(modelItem => item.orderRow.Price)*@
+
+                    </td>
+
+                    <td>
+                        @{double Price = item.orderRow.Price;
+                            Price += Vat; // (Price * 0.25);
+                        }
+                        @Price
+                        @{Total += @Price;}
+                        @*@Html.DisplayFor(modelItem => item.orderRow.Price)*@
+
+                    </td>
+
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+@*<hr />*@
+<br />
+
+<div class="row justify-content-evenly ">
+    <div class="col-md-4">
+        <div class="container-md">
+            <h4>Total @Total SEK incl. VAT</h4>
+            <br />
+            <h6>Transaction Ref. VISA **72 **** **** **28 </h6>
+            <h6>Delivery estimate is 3-5 business days. </h6>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div class="container">
+    <div class="jumbotron">
+        <div class="row justify-content-evenly ">
+
+            <div class="col-sm-4">
+                <div class="container-sm">
+                    <h4>WebShop address:</h4>
+                    <br />
+                    <h6>QuakRoad 99</h6>
+                    <h6>Disneyland</h6>
+                    <h6>555-99 Florida</h6>
+                    <h6>USA</h6>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="container-sm">
+                    <h4>WebShop contact:</h4>
+                    <br />
+                    <h6>Email: donald@duck.com</h6>
+                    <h6>Phone: 555-1234231</h6>
+                    <h6>Mobile: 555-1324321</h6>
+                    <h6>Fax: 555-654321</h6>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row justify-content-evenly ">
+        <div class="col-md-10">
+            <div class="container-md">
+                <h4>All goods and services belong to WebShop until full payment has been made!</h4>
+                <a href="javascript:window.print()">Click to Print This Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+

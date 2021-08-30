@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebShopIdentity.ViewModels.VW_Stores>
+
+@{
+    ViewData["Title"] = "GetAllStores";
+}
+
+<h4>Receipt & Remittance</h4>
+
+<p>
+    <a asp-action="AddToStore">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceipDate)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DocumentTypeId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceipDate)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.DocumentTypeId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentName)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                <a asp-action="GetAllStoreRows" asp-controller="StoreRow" asp-route-id="@item.Id">StoreRows</a> |
+                <a asp-action="RemoveFromStore" asp-controller="Store" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

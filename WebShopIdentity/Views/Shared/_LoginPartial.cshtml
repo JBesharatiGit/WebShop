@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WebShopIdentity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @*<li class="nav-item"> <a class="btn btn-primary" role="button" style="margin-right: 10px" asp-action="EditUser" asp-route-id=@UserManager.GetUserId(User)> Me </a> </li>*@
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"> @User.Identity.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+               
+            </form>
+        </li>
+        <li>
+        
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Admin") || User.IsInRole("common")))
+        {
+            
+
+
+        }
+        else
+        {
+            <a class="btn btn-success" role="button" style="margin-right: 10px" asp-area="" asp-controller="Administration" asp-action="ActivateUser">Activate User!</a>
+        }
+
+            
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="product" asp-action="GetSelected"><img src="~/cart.png" style="margin-left: 50px" class="rounded" alt=" Cart"></a>
+            </li>
+        }
+
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </li>
+        }
+</ul>

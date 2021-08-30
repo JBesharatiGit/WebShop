@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@model IEnumerable<IdentityRole>
+@{
+    ViewBag.Title = "Users List";
+}
+ @*<button type="submit" class="btn btn-primary">Create role</button>*@
+<h5>List Roles</h5>
+@*<a class="btn btn-primary" style="width:auto" asp-action="CreateRole" asp-controller="Administration">Add new Role</a>*@
+<p>
+    <a asp-action="CreateRole">Create New</a>
+</p>
+@if (Model.Any())
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a asp-action="EditUsersInRole" asp-route-id="@item.Id">Edit Users In Role</a> |
+                    <a asp-action="EditRole" asp-route-id="@item.Id">Edit Role</a> |
+                    <a asp-action="DeleteCountry" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    
+</table>
+    
+}
+
+

@@ -1,0 +1,40 @@
+﻿@model WebShopIdentity.City
+
+@{
+    ViewData["Title"] = "CreateCity";
+    var m = ViewBag.model;
+}
+
+<h1>CreateCity</h1>
+
+<h4>City</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCity">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label" hidden></label>
+                @*<select asp-for="CountryId" class ="form-control" asp-items="ViewBag.CountryId"></select>*@
+                <input asp-for="CountryId" class="form-control" value="@m.CountryId" readonly hidden />
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="CountryList">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

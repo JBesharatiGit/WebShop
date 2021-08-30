@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebShopIdentity.ViewModels.OrderRowListViewModel>
+@*@model IEnumerable<WebShopIdentity.ViewModels.VW_ShopHistory>*@
+
+
+@{
+    ViewData["Title"] = "GetAllOrderRows";
+    var OId = ViewBag.Order.order.OrderId;
+}
+
+<h4>Order And Rows</h4>
+<br/>
+<div class="container">
+
+</div>
+<div class="row justify-content-evenly ">
+    <div class="col-sm-4">
+        <div class="container-sm">
+            <h5>Custome     : @ViewBag.Order.CpersonName</h5>
+            <h5>Email       : @ViewBag.Order.Email</h5>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="container-sm">
+            <h5>Order Number: @ViewBag.Order.order.OrderId</h5>
+            <h5>Order Date  : @ViewBag.Order.order.OrderDate</h5>
+        </div>
+    </div>
+</div>
+<br />
+<p>
+    
+    <a asp-action="AddOrderRow" asp-controller="OrderRow" asp-route-id="@OId">Add Row</a> 
+
+</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.orderRow.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.orderRow.OrderId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.orderRow.Price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.orderRow.Price)
+                    </td>
+                    <td>
+                        <a asp-action="EditOrderRow" asp-route-id="@item.orderRow.Id">Edit</a> |
+                        @*<a asp-action="Details" asp-route-id=" @ViewBag.Order">Details</a> |*@
+                        <a asp-action="RemoveOrderRow" asp-controller="OrderRow" asp-route-id="@item.orderRow.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+<div>
+    <a asp-action="GetAllOrders" asp-controller="Orders">Back to List</a>
+</div>

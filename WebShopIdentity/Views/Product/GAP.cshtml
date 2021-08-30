@@ -1,0 +1,49 @@
+﻿@*@model IEnumerable<WebShopIdentity.ViewModels.ProductsListViewModel>*@
+@model IEnumerable<WebShopIdentity.ViewModels.VW_StoreBalance>
+
+@{
+    ViewData["Title"] = "GetAllProducts";
+}
+
+<link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+<div class="row justify-content-center m-3">
+ 
+        @foreach (var good in Model)
+        {
+            <div class="col-sm-2 col-lg-2 col-md-2 ">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>@good.ProductName</h6>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="thumbnail">
+                            <img class="card-img-top" src="~/Images/@good.PhotoName" alt="Alternate Text" />
+                        </div>
+                        <h6>Price : @good.ProductPrice</h6>
+                        <h6>Code  : @good.ProductID</h6>
+                        <h6>Inventory: @good.Inventory</h6>
+                    </div>
+                    <div class="card-footer text-center">
+                        @if (User.IsInRole("Admin") || User.IsInRole("common"))
+                        {
+                            <a type="submit" class="btn btn-primary"  asp-action="GetProduct" asp-controller="Product" asp-route-id="@good.ProductID">Select</a>
+                        }
+                       
+
+                    </div>
+                </div>
+            </div>
+        }
+
+        @*<hr />  <--*@
+
+        @*<div class="col-sm-6">
+            <partial name="_ShoppingCart" />
+        </div>*@
+    </div>
+
+
+
+
+

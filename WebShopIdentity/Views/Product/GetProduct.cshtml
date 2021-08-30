@@ -1,0 +1,78 @@
+﻿@model ProductsListViewModel
+@{ 
+    ViewBag.Title = "Product Details";
+    
+    }
+
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <div class="row justify-content-evenly ">
+        <div class="col-sm-4">
+            <div class="container-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>@Model.product.Name</h4>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="thumbnail">
+                            <img class="card-img-top" src="~/Images/@Model.product.PhotoName" alt="Alternate Text" />
+                        </div>
+                        <h4>@Model.product.ProductPrice</h4>
+                        <h4>@Model.product.Name</h4>
+                        <h4>@Model.product.ProductID</h4>
+                    </div>
+                    <div class="card-footer text-center">
+                        @*<a type="submit" class="btn btn-primary" asp-action="GetProduct" asp-controller="Product" asp-route-id="">Choose</a>*@
+                        <a type="submit" class="btn btn-primary" asp-action="AddToSessionVar" asp-controller="product" asp-route-id="@Model.product.ProductID">Add to cart</a>
+                        @*<a type="submit" class="btn btn-primary" asp-action="Gap" asp-controller="Product">Back</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="col-sm-6">
+            <partial name="_ShoppingCart" />
+        </div>
+
+
+        @*<div class="col-sm-6">
+            <div class="container-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Yoou have choosen following goods</h4>
+                    </div>
+                    @if (@ViewBag.sessionList != null)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ProductCode</th>
+                                    <th>productName</th>
+                                    <th>ProductPrice</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.sessionList)
+                                {
+                                    <tr>
+                                        <td><h5> @item.orderRow.ProductId </h5> </td>
+                                        <td><h5> @item.ProductName</h5> </td>
+                                        <td><h5> @item.orderRow.Price</h5> </td>
+                                        <td>
+                                            <a asp-action="RemoveProduct" asp-route-id=" @item.orderRow.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+                <div class="card-footer text-center">
+                    <a type="submit" class="btn btn-primary" asp-action="Purchase" asp-controller="Purchase" asp-route-id="">Cash</a>
+                </div>
+            </div>
+        </div>*@
+    </div>

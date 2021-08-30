@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebShopIdentity.ViewModels.OrdersListViewModel>
+
+@{
+    ViewData["Title"] = "GetAllOrders";
+}
+
+<h4>OrdersList</h4>
+
+<p>
+    <a asp-action="AddOrder">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.order.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.order.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CpersonName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.order.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.order.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CpersonName)
+            </td>
+            <td>
+                <a asp-action="EditOrder" asp-route-id="@item.order.OrderId">Edit</a> |
+                @*<a asp-action="AddOrderRow" asp-controller="OrderRow" asp-route-id="@item.order.OrderId">Add OrderRowa</a> |*@
+                <a asp-action="GetAllOrderRows" asp-controller="OrderRow" asp-route-id="@item.order.OrderId">OrderRows</a> |
+                <a asp-action="RemoveOrder" asp-route-id="@item.order.OrderId">Delete</a> |
+                <a asp-action="MakeReceipt" asp-controller="OrderRow" asp-route-id="@item.order.OrderId">Receipt</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

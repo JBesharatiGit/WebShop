@@ -1,0 +1,50 @@
+﻿
+<div class="container-sm">
+    <div class="card">
+        <div class="card-header">
+            <h4>Yoou have choosen following goods</h4>
+        </div>
+
+        @* Need to fill sessionList here. *@
+        <div class="card-body">
+            @if (@ViewBag.sessionList != null)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ProductCode</th>
+                        <th>productName</th>
+                        <th>ProductPrice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @ViewBag.sessionList)
+                    {
+                    <tr>
+                        <td><h5> @item.orderRow.ProductId </h5> </td>
+                        <td><h5> @item.ProductName</h5> </td>
+                        <td><h5> @item.orderRow.Price</h5> </td>
+                        <td>
+                            @if (User.IsInRole("Admin") || User.IsInRole("common"))
+                            {
+                                <a asp-action="RemoveFromSessionVar" asp-controller="product" asp-route-id=" @item.orderRow.OrderId">Delete</a>
+                            }
+                            </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <div class="card-footer text-center">
+            @if (User.IsInRole("Admin") || User.IsInRole("common"))
+            {
+                <a type="submit" class="btn btn-primary" asp-action="Gap" asp-controller="Product">Continue shopping</a>
+                <a type="submit" class="btn btn-primary" asp-action="Purchase" asp-controller="Purchase" asp-route-id="">Check Out</a>
+            }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

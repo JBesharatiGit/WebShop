@@ -1,0 +1,47 @@
+﻿@using WebShopIdentity.Models;
+@model UserCityViewModel
+@{
+    <form asp-controller="Administration" asp-action="EditUser" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" value="@ViewBag.UserId" readonly />
+              
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" value="@ViewBag.UserId" readonly />
+
+                </div>
+                <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="col-xs-12 col-sm-6 ">
+                    <label asp-for="CityName" class="control-label"></label>
+                    <select  asp-for="Cityid"
+                            class="form-control"
+                            asp-items="@(new SelectList(@ViewBag.City,"Cityid", "CityName"))">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <input id="Submit1" type="submit" value="submit" class="btn btn-primary" />
+                    <a asp-action="ListUsers"  class="btn btn-primary" >Cancel</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    @if (ViewBag.SelectedValue != null)
+                    {
+                        <text>Selected City ID: </text> @ViewBag.SelectedValue;
+
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+}  

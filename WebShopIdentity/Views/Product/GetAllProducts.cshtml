@@ -1,0 +1,74 @@
+﻿@*@model IEnumerable<WebShopIdentity.ViewModels.ProductsListViewModel>*@
+@model IEnumerable<WebShopIdentity.ViewModels.VW_StoreBalance>
+
+@{
+    ViewData["Title"] = "GetAllProducts";
+}
+<link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+<h5>Products List</h5>
+
+<p>
+    <a asp-action="AddProduct">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhotoName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sumIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sumOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Inventory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sumIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sumOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inventory)
+            </td>
+
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.ProductID">Edit</a> |
+                <a asp-action="GetProduct" asp-route-id="@item.ProductID">Details</a> |
+                <a asp-action="RemoveProduct" asp-route-id="@item.ProductID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
